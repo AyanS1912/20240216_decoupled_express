@@ -1,9 +1,8 @@
-const port = 5000
 const express = require('express')
 const app = express()
 const fs = require('fs')
 const path = require('path')
-
+const port = 5000
 app.use(express.json()) 
 app.listen(port,() => {
     console.log('App running on local port 5000 with jsonwala')

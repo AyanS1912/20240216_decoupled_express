@@ -4,7 +4,7 @@ const http = require('http').Server(app)
 const mongoose = require('mongoose')
 const port = 1000 // Setting up port for the server
 
-// Replace the placeholder with your Atlas connection string
+// // // Replace the placeholder with your Atlas connection string
 const uri = "mongodb+srv://root:root@cluster0.tkxxgty.mongodb.net/express_decoupled?retryWrites=true&w=majority"
 
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -45,10 +45,11 @@ const uri = "mongodb+srv://root:root@cluster0.tkxxgty.mongodb.net/express_decoup
 
 
 mongoose.connect(uri)
+app.use(express.json())
 
 const Products = require("./schema/products")
 const Orders = require("./schema/orders")
-app.use(express.json())
+
 
 
 /** -----------------------   -----  PRODUCTS API CALLS ----- - ----------------- */
@@ -220,4 +221,4 @@ app.get('/search', async (req, res) => {
     }
 });
 
-app.listen(port, () => console.log("Server Starting"))
+app.listen(port, () => console.log(`Server Starting of mongowala with Port ${port}`))
