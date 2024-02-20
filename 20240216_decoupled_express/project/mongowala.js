@@ -49,7 +49,7 @@ app.use(express.json())
 
 const Products = require("./schema/products")
 const Orders = require("./schema/orders")
-
+const Cart = require("./schema/cart")
 
 
 /** -----------------------   -----  PRODUCTS API CALLS ----- - ----------------- */
@@ -130,8 +130,8 @@ app.get('/orders', async (req, res) => {
     }
 })
 
-app.post('/placeOrder/:id', async (req, res) => {
-    try {
+app.post('/addCart/:id', async (req,res) => {
+    try{
         const product = await Products.findById(req.params.id)
         if (!product) {
             return res.status(404).send({ message: "Product not found." })
@@ -144,18 +144,43 @@ app.post('/placeOrder/:id', async (req, res) => {
         if (req.body.quantity > product.stock) {
             return res.status(400).send({ message: "Insufficient stock." })
         }
-        product.stock -= req.body.quantity
+
+        const CartDetails = {
+            productId: product._id,
+            productName: product.name,
+            address: req.body.address,
+            quantity: req.body.quantity,
+            cost : product.price*parseInt(req.body.quantity)
+        }
+
+        const OrderCart = await Cart.create(CartDetails)
+        return res.send(201).status("Order aaded to cart. Please proceed to pay to Place Order.")
+    }
+    catch(err){
+        res.status(400).send("Failed to Add Products to Cart.")
+    }
+})
+app.post('/placeOrder/:id', async (req, res) => {
+    try {
+        const product = await Products.findById(req.params.id)
+        const cart = await Cart.find({productId:req.params.id})
+
+        if (cart[0].quantity > product.stock) {
+            return res.status(400).send({ message: "Insufficient stock." })
+        }
+        product.stock -= cart[0].quantity
         await product.save()
 
         const orderDetails = {
             productId: product._id,
             productName: product.name,
-            address: req.body.address,
-            quantity: req.body.quantity,
+            address: cart[0].address,
+            quantity: cart[0].quantity,
             delivery_status: 'Pending',
-            cost : product.price*parseInt(req.body.quantity)
+            cost : cart[0].cost
         }
         const newOrder = await Orders.create(orderDetails)
+        const updateCart = await Cart.deleteOne({productId:product._id})
         return res.status(201).send("Order placed successfully.")
     }
     catch (err) {

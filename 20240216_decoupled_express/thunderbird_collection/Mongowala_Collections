@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "Mongo_Collections",
-    "dateExported": "2024-02-18T16:42:30.139Z",
+    "dateExported": "2024-02-20T05:07:12.754Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -28,12 +28,12 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-02-18T13:46:24.058Z",
-            "modified": "2024-02-18T13:46:24.058Z",
+            "modified": "2024-02-19T05:48:29.911Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Prod34\",\n  \"desc\": \"bksbjdcksjdnc\",\n  \"price\": 455,\n  \"stock\": 21,\n  \"img\": \"dcdjkcbdsk.com\"\n}",
+                "raw": "{\n  \"name\": \"Prodcakndbckabcc3csaa4\",\n  \"desc\": \"bksbjdcksjdnc\",\n  \"price\": 4555,\n  \"stock\": 101,\n  \"img\": \"dcdjscascaskcbdsk.com\"\n}",
                 "form": []
             },
             "tests": []
@@ -109,11 +109,11 @@
             "colId": "22371cfa-8522-4fdc-96f1-24f34f26b68a",
             "containerId": "",
             "name": "Cancelling an Order",
-            "url": "http://localhost:1000/orders/65d228da231d5370e2f39dfe/cancel",
+            "url": "http://localhost:1000/orders/65d22d32f50d78e97b9ed8eb/cancel",
             "method": "POST",
             "sortNum": 70000,
             "created": "2024-02-18T16:12:59.998Z",
-            "modified": "2024-02-18T16:12:59.998Z",
+            "modified": "2024-02-19T06:04:58.065Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -123,11 +123,11 @@
             "colId": "22371cfa-8522-4fdc-96f1-24f34f26b68a",
             "containerId": "",
             "name": "Status of an Order",
-            "url": "http://localhost:1000/orders/65d228da231d5370e2f39dfe/deliveryStatus",
+            "url": "http://localhost:1000/orders/65d22d32f50d78e97b9ed8eb/deliveryStatus",
             "method": "GET",
             "sortNum": 80000,
             "created": "2024-02-18T16:18:24.702Z",
-            "modified": "2024-02-18T16:18:24.702Z",
+            "modified": "2024-02-19T06:04:30.518Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -137,19 +137,52 @@
             "colId": "22371cfa-8522-4fdc-96f1-24f34f26b68a",
             "containerId": "",
             "name": "Search",
-            "url": "http://localhost:1000/search/?q=hi",
+            "url": "http://localhost:1000/search/?q=Print",
             "method": "GET",
             "sortNum": 90000,
             "created": "2024-02-18T16:37:34.226Z",
-            "modified": "2024-02-18T16:37:34.226Z",
+            "modified": "2024-02-19T06:03:31.115Z",
             "headers": [],
             "params": [
                 {
                     "name": "q",
-                    "value": "hi",
+                    "value": "Print",
                     "isPath": false
                 }
             ],
+            "tests": []
+        },
+        {
+            "_id": "7310690e-dfbb-4539-8b9a-5de9c846eae9",
+            "colId": "22371cfa-8522-4fdc-96f1-24f34f26b68a",
+            "containerId": "",
+            "name": "Add product to cart",
+            "url": "http://localhost:1000/addCart/65d1fca68efcacf537ce61aa",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-02-20T04:53:50.969Z",
+            "modified": "2024-02-20T04:53:50.969Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"address\" : \"mere ghar pe la dena\",\n  \"quantity\" : 1\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "15a54200-c995-497f-8e97-1a7e2f249e3b",
+            "colId": "22371cfa-8522-4fdc-96f1-24f34f26b68a",
+            "containerId": "",
+            "name": "Place order stored in cart",
+            "url": "http://localhost:1000/placeOrder/65d1fca68efcacf537ce61b3",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2024-02-20T05:07:06.445Z",
+            "modified": "2024-02-20T05:07:06.445Z",
+            "headers": [],
+            "params": [],
             "tests": []
         }
     ]
